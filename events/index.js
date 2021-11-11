@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser  = require('body-parser')
 const axios = require('axios')
 //const cors = require('cors')
-
+const events = []
 
 //app.use(cors())
 
@@ -11,6 +11,10 @@ app.use(bodyParser.json())
 
 app.post('/events', async (req, res)=> {
     const event = req.body
+
+
+    events.push(event)
+
 
 //POSTS
    await axios.post('http://localhost:4000/events', event).catch((err) => {
@@ -30,6 +34,10 @@ app.post('/events', async (req, res)=> {
     res.send({status: 'OK'})
 })
 
+
+app.get('/events', (req,res) => {
+  res.send(events)
+})
 
 app.listen(4005, () => {
     console.log('Listening on 4005')
