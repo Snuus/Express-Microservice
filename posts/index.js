@@ -14,10 +14,18 @@ const posts = {}
 
 
 app.get('/posts', (req, res) =>{
-    res.send(posts)
+    res.send(posts).catch((e) => {
+        console.log(e)
+    })
+
 })
 
 app.post('/posts', async (req, res) =>{
+
+
+    try {
+     
+  
     const id = randomBytes(4).toString('hex')
     const { title }  = req.body
 
@@ -33,11 +41,15 @@ app.post('/posts', async (req, res) =>{
     })
 
     res.status(201).send(posts[id])
+} catch (error) {
+    console.log(error.message);
+  }
+    
+
 })
 
 app.post('/events', (req,res) => {
     console.log('recieved Event', req.body.type)
-
 
     res.send({})
 })
