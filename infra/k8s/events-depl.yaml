@@ -1,32 +1,32 @@
+#Pod Creation
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: events-depl
 spec: 
   replicas: 1
   selector: 
     matchLabels:
-      app: posts
+      app: events
   template:
     metadata:
        labels:
-        app: posts
+        app: events
     spec:
        containers:
-         - name: posts
-           image: snuus/posts
-           
+         - name: events
+           image: snuus/events
 ---
 #Cluster IP
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-clusterip-srv
+  name: events-clusterip-srv
 spec:
   selector:
-    app: posts
+    app: events
   ports: 
-    - name: posts 
+    - name: events 
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 4005
+      targetPort: 4005

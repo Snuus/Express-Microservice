@@ -14,9 +14,7 @@ const posts = {}
 
 
 app.get('/posts', (req, res) =>{
-    res.send(posts).catch((e) => {
-        console.log(e)
-    })
+    res.send(posts)
 
 })
 
@@ -33,7 +31,7 @@ app.post('/posts', async (req, res) =>{
         id, title
     }
     
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://events-clusterip-srv:4005/events', {
         type: 'PostCreated',
         data: {
             id, title
@@ -57,5 +55,6 @@ app.post('/events', (req,res) => {
 
 
 app.listen(4000, () => {
+    console.log('v1')
     console.log('Listening on 4000')
 })
