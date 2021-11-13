@@ -55,7 +55,7 @@ app.post('/events', async (req,res) => {
             comment.status = status
             console.log(status)
 
-            await axios.post('events-clusterip-srv:4005/events',{
+            await axios.post('http://events-clusterip-srv:4005/events',{
                 type:'CommentUpdated',
                 data: {
                     id,

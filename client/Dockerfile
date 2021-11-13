@@ -1,5 +1,6 @@
 FROM node:alpine
 
+ENV CI=true
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
